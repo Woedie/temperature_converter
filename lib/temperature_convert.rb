@@ -1,3 +1,5 @@
+require 'net/http'
+require 'uri'
 
 class TemperatureConverter
 
@@ -13,9 +15,15 @@ class TemperatureConverter
 
   end
 
-  def html_temp url
+  def open(url)
 
-    @temp = temp
+    Net::HTTP.get(URI.parse(url))
+
+  end
+
+  def url_temp url
+
+    @temp = open(url).to_f
 
   end
 
@@ -27,5 +35,19 @@ class TemperatureConverter
     (@temp + 273.15).to_s + " Kelvin"
 
   end
+
+  def to_json
+
+  end
+
+  def to_html
+    "<p>Temperature html:<br />" +
+        @temp.to_s + "Celcius<br />" +
+        ((@temp * (9.0/5.0) ) + 32).to_s + "Fahrenheit<br />" +
+        (@temp + 273.15).to_s + "Kelvin
+    </p>"
+
+  end
+
 
 end
