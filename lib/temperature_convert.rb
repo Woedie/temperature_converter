@@ -41,11 +41,12 @@ class TemperatureConverter
   end
 
   def to_html
-    "<p>Temperature html:<br />" +
-        @temp.to_s + "Celcius<br />" +
-        ((@temp * (9.0/5.0) ) + 32).to_s + "Fahrenheit<br />" +
-        (@temp + 273.15).to_s + "Kelvin
-    </p>"
+    "<p>Temperature html:</p>
+    <ul>
+    <li>" + @temp.to_s + " Celcius</li>
+    <li>" + ((@temp * (9.0/5.0) ) + 32).to_s + " Fahrenheit</li>
+    <li>" + (@temp + 273.15).to_s + " Kelvin</li>
+    </ul>"
 
   end
 
