@@ -38,6 +38,12 @@ class TemperatureConverter
 
   def to_json
 
+    "Temperature json:\r\n" +
+    "{Celcius : " + @temp.to_s +
+    ", Fahrenheit : " + ((@temp * (9.0/5.0) ) + 32).to_s  +
+    ", Kelvin : " + (@temp + 273.15).to_s + "}"
+
+
   end
 
   def to_html
