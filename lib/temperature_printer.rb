@@ -11,7 +11,7 @@ class TemperaturePrinter
     puts ""
     puts "Temperature text:"
     puts ""
-    temperature_reader.temp.to_s + " Celcius \r\n" +
+    temperature_reader.cmdLine_temp.to_s + " Celcius \r\n" +
     ((temperature_reader.temp * F_CONST ) + 32).to_s + " Fahrenheit \r\n" +
     (temperature_reader.temp + K_CONST).to_s + " Kelvin"
 
