@@ -1,12 +1,20 @@
-require './lib/temperature_convert.rb'
+require './lib/temperature_reader.rb'
 
-temp_converter = TemperatureConverter.new
+cmd = ARGV
+file = "./data/temp.txt"
+url = "http://labict.be/software-engineering/temperature/api/temperature/fake"
 
-temp_converter.cmdLine_temp ARGV
-temp_converter.print
+reader = TemperatureReader.new
 
-temp_converter.txtFile_temp './data/temp.txt'
-temp_converter.print
+puts "Commandline\n"
+reader.cmdline_temperature cmd
+puts '...............................................................'
 
-temp_converter.url_temp 'http://labict.be/software-engineering/temperature/api/temperature/fake'
-temp_converter.print
+
+puts "File"
+reader.file_temperature file
+puts '...............................................................'
+
+puts "Url\n"
+reader.url_temperature url
+puts '...............................................................'
