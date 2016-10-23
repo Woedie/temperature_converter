@@ -27,15 +27,15 @@ class TemperaturePrinter
 		end
 
 		def self.print(temp)
-			puts '>to_text'
+			puts 'TEXTing'
 			puts to_text(@converter.to_celcius(temp), @converter.to_fahrenheit(temp), @converter.to_kelvin(temp))
 			puts ''
 
-			puts '>to_html'
+			puts 'HTMLing'
 			puts to_html(@converter.to_celcius(temp), @converter.to_fahrenheit(temp), @converter.to_kelvin(temp))
 			puts ''
 
-			puts '>to_json'
+			puts 'JSONing'
 			puts to_json(@converter.to_celcius(temp), @converter.to_fahrenheit(temp), @converter.to_kelvin(temp))
 			puts ''
 		end
