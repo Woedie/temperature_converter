@@ -9,17 +9,6 @@ class TemperatureConverter
 		@temp = 0
 	end
 
-	  # def self.convert(temp)
-	  #   # celcius = TemperatureConverter.to_celcius(temp)
-	  #   # fahrenheit = TemperatureConverter.to_fahrenheit(temp)
-		# 	# kelvin = TemperatureConverter.to_kelvin(temp)
-		#
-		# 	# celcius = temp
-		# 	# fahrenheit = (temp * FAHRENHEIT_SLOPE) + FAHRENHEIT_OFFSET
-		# 	# kelvin = temp + KELVIN
-	  #   return celcius, fahrenheit, kelvin
-	  # end
-
 		def to_celcius(temp)
 			temp
 		end
