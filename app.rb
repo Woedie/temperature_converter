@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require './lib/temperature_reader.rb'
 
 cmd = ARGV
