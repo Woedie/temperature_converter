@@ -41,15 +41,11 @@ class TemperatureReader
 			:username => username,
 			:password => password) do |c|
 			  # If you pass a block to the get method, then it will loop
-			  c.get('#') do |topic,message|
-					if "#{topic}" == sensor_id
-							# puts "#{topic}: #{message}"
+			  c.get(sensor_id) do |topic,message|
 							obj = JSON.parse("#{message}")
 							temp = obj['fields']['temperature'].to_f
 							TemperaturePrinter.print(temp)
 							puts '.....................................................................'
-					end
-
 			  end
 			end
 		end
