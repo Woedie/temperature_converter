@@ -1,0 +1,4 @@
+broker:   staging.thethingsnetwork.org
+Sille: port:     1883
+username: 70B3D57ED00012B2
+pass: c8iuTSccnypK1eoFzEb/OoqB2FVAiFg/aEaYesnNf4w=
