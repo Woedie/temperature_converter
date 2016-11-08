@@ -3,6 +3,7 @@ require 'uri'
 require './lib/temperature_printer.rb'
 require 'rubygems'
 require 'mqtt'
+require 'json'
 
 class TemperatureReader
 
@@ -32,16 +33,23 @@ class TemperatureReader
 			Net::HTTP.get(URI.parse(url))
 		end
 
-		def ttn_reader
+		def ttn_reader (ttn_host, port, username, password, sensor_id)
 			# Subscribe example
 			MQTT::Client.connect(
-			:host => 'staging.thethingsnetwork.org',
-			:port => 1883,
-			:username => '70B3D57ED00012B2',
-			:password => 'c8iuTSccnypK1eoFzEb/OoqB2FVAiFg/aEaYesnNf4w=') do |c|
+			:host => ttn_host,
+			:port => port,
+			:username => username,
+			:password => password) do |c|
 			  # If you pass a block to the get method, then it will loop
 			  c.get('#') do |topic,message|
-			    puts "#{topic}: #{message}"
+					if "#{topic}" == sensor_id
+							# puts "#{topic}: #{message}"
+							obj = JSON.parse("#{message}")
+							temp = obj['fields']['temperature'].to_f
+							TemperaturePrinter.print(temp)
+							puts '.....................................................................'
+					end
+
 			  end
 			end
 		end
