@@ -11,18 +11,18 @@ sensor_id = '70B3D57ED00012B2/devices/00000000AE6C63E4/up'
 
 reader = TemperatureReader.new
 
-# puts "Commandline\n"
-# reader.cmdline_temperature cmd
-# puts '...............................................................'
-#
-#
-# puts "File"
-# reader.file_temperature file
-# puts '...............................................................'
-#
-# puts "Url\n"
-# reader.url_temperature url
-# puts '...............................................................'
+puts "Commandline\n"
+reader.cmdline_temperature cmd
+puts '...............................................................'
+
+
+puts "File"
+reader.file_temperature file
+puts '...............................................................'
+
+puts "Url\n"
+reader.url_temperature url
+puts '...............................................................'
 
 puts "Listening on TTN\n"
 reader.ttn_reader(ttn_host, port, username, password, sensor_id)
