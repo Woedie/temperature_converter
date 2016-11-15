@@ -5,19 +5,19 @@ class TemperatureConverter
 	FAHRENHEIT_OFFSET = 32
 	FAHRENHEIT_SLOPE = Rational(9,5)
 
-	def initialize
-		@temp = 0
+	def initialize temp
+		@temp = temp
 	end
 
-		def to_celcius(temp)
+		def to_celcius
 			temp
 		end
 
-		def to_fahrenheit(temp)
+		def to_fahrenheit
 			(temp * FAHRENHEIT_SLOPE) + FAHRENHEIT_OFFSET
 		end
 
-		def to_kelvin(temp)
+		def to_kelvin
 			temp + KELVIN
 		end
 

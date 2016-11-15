@@ -4,11 +4,11 @@ require 'optparse'
 cmd = ARGV
 file = "./data/temp.txt"
 url = "http://labict.be/software-engineering/temperature/api/temperature/fake"
-ttn_host = "staging.thethingsnetwork.org"
-port = 1883
-username = '70B3D57ED00012B2'
-password = 'c8iuTSccnypK1eoFzEb/OoqB2FVAiFg/aEaYesnNf4w='
-sensor_id = '70B3D57ED00012B2/devices/00000000AE6C63E4/up'
+# ttn_host = "staging.thethingsnetwork.org"
+# port = 1883
+# username = '70B3D57ED00012B2'
+# password = 'c8iuTSccnypK1eoFzEb/OoqB2FVAiFg/aEaYesnNf4w='
+# sensor_id = '70B3D57ED00012B2/devices/00000000AE6C63E4/up'
 
 reader = TemperatureReader.new
 
@@ -29,21 +29,51 @@ reader = TemperatureReader.new
 # reader.ttn_reader(ttn_host, port, username, password, sensor_id)
 
 OptionParser.new do |opts|
+  ttn_host = "staging.thethingsnetwork.org"
+  port = 1883
+  username = '70B3D57ED00012B2'
+  password = 'c8iuTSccnypK1eoFzEb/OoqB2FVAiFg/aEaYesnNf4w='
+  sensor_id = '70B3D57ED00012B2/devices/00000000AE6C63E4/up'
  opts.banner = "Usage: ruby app.rb [options]"
 
+ conv = nil
  opts.on("-t CMDTEMP", Float, "Show cmd temperature.") do |cmdtemp|
-   reader.cmdline_temperature "#{cmdtemp}"
+   conv = TemperatureConverter.new "#{cmdtemp}".to_f
  end
 
  opts.on("-f FILE", String, "Show file temperature.") do |file|
-   reader.file_temperature "#{file}"
+  #  reader.file_temperature "#{file}"
+  conv = TemperatureConverter.new File.read("#{file}").to_f
  end
 
  opts.on("-u URL", String, "Show url temperature.") do |url|
-   reader.url_temperature "#{url}"
+  conv = TemperatureConverter.new Net::HTTP.get(URI.parse("#{url}")).to_f
  end
 
  opts.on("-m", "--mqtt", "Show mqtt temperature.") do
-   reader.ttn_reader(ttn_host, port, username, password, sensor_id)
+   MQTT::Client.connect(
+   :host => ttn_host,
+   :port => port,
+   :username => username,
+   :password => password) do |c|
+     # If you pass a block to the get method, then it will loop
+     c.get(sensor_id) do |topic,message|
+           obj = JSON.parse("#{message}")
+           conv = obj['fields']['temperature'].to_f
+     end
+   end
  end
+
+ opts.on("--text", "Show temperature as text.") do
+   puts TemperaturePrinter.to_text(conv)
+ end
+
+ opts.on("--json", "Show temperature as json.") do
+   puts TemperaturePrinter.to_json(conv)
+ end
+
+ opts.on("--html", "Show temperature as html.") do
+   puts TemperaturePrinter.to_html(conv)
+ end
+
 end.parse!
