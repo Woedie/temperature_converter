@@ -15,7 +15,7 @@ class TemperatureReader
 	end
 
 		def cmdline_temperature temp
-			TemperaturePrinter.print(temp.first.to_f)
+			TemperaturePrinter.print(temp.to_f)
 		end
 
 		def file_temperature path
