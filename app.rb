@@ -1,5 +1,10 @@
 require './lib/temperature_reader.rb'
 require 'optparse'
+require 'net/http'
+require 'uri'
+require 'rubygems'
+require 'mqtt'
+require 'json'
 
 cmd = ARGV
 file = "./data/temp.txt"
@@ -60,6 +65,10 @@ OptionParser.new do |opts|
      c.get(sensor_id) do |topic,message|
            obj = JSON.parse("#{message}")
            conv = obj['fields']['temperature'].to_f
+           puts conv
+          #  puts TemperaturePrinter.to_text(conv)
+           puts '.....................................................................'
+
      end
    end
  end

@@ -26,7 +26,7 @@ class TemperaturePrinter
 			"(celcius: #{temperature.to_celcius}, fahrenheit: #{temperature.to_fahrenheit}, kelvin: #{temperature.to_kelvin})"
 		end
 
-		def self.print(temp)
+		def self.print(temperature)
 			puts 'TEXTing'
 			puts to_text(@converter)
 			puts ''
