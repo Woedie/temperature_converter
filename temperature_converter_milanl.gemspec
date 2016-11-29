@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'temperature_converter_milanl'
-  s.version     = '1.0.0'
-  s.date        = '2016-11-18'
+  s.version     = '2.0.0'
+  s.date        = '2016-11-29'
   s.summary     = "Converts temperatures from different sources."
   s.description = "Converts temperatures from different sources."
   s.authors     = ["Milan Lamote"]
