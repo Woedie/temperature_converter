@@ -1,3 +1,3 @@
-require './lib/temperature_reader.rb'
-require './lib/temperature_printer.rb'
-require './lib/temperature_converter.rb'
+require 'temperature_reader.rb'
+require 'temperature_printer.rb'
+require 'temperature_converter.rb'

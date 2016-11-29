@@ -1,6 +1,6 @@
 require 'net/http'
 require 'uri'
-require './lib/temperature_printer.rb'
+require 'temperature_printer.rb'
 require 'rubygems'
 require 'mqtt'
 require 'json'
