@@ -23,7 +23,7 @@ class TemperaturePrinter
 		end
 
 		def self.to_json(temperature)
-			"(celcius: #{temperature.to_celcius}, fahrenheit: #{temperature.to_fahrenheit}, kelvin: #{temperature.to_kelvin})"
+			"{\"celcius: #{temperature.to_celcius}\"; \"fahrenheit: #{temperature.to_fahrenheit}\"; \"kelvin: #{temperature.to_kelvin}\"}"
 		end
 
 		def self.print(temperature)
