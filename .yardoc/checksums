@@ -1,0 +1,4 @@
+lib/temperature_reader.rb 2fe484e41843951637a23d749fee7df9a0b6423b
+lib/temperature_printer.rb e01807cdc1d871301eb4ef93940b2e33982f7aa5
+lib/temperature_converter.rb 1fed2df8afd3098ac51a2957b11ea181a168091a
+lib/temperature_converter_milanl.rb 6a9293e7b2e35ef369514b7b36ce0c82f1728dd5

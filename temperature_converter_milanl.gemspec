@@ -7,8 +7,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Milan Lamote"]
   s.email       = 'milan.lamote@student.vives.be'
   s.files       = ["lib/temperature_converter_milanl.rb"]
-  s.homepage    =
-    'https://github.com/Woedie'
+  s.homepage    = 'https://github.com/Woedie'
   s.license       = 'MIT'
   s.executables << 'temp-conv'
 end
