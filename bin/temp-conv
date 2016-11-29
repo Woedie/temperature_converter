@@ -43,18 +43,18 @@ OptionParser.new do |opts|
   sensor_id = '70B3D57ED00012B2/devices/00000000AE6C63E4/up'
  opts.banner = "Usage: ruby app.rb [options]"
 
- conv = nil
+ @conv = nil
  opts.on("-t CMDTEMP", Float, "Show cmd temperature.") do |cmdtemp|
-   conv = TemperatureConverter.new "#{cmdtemp}".to_f
+   @conv = TemperatureConverter.new "#{cmdtemp}".to_f
  end
 
  opts.on("-f FILE", String, "Show file temperature.") do |file|
   #  reader.file_temperature "#{file}"
-  conv = TemperatureConverter.new File.read("#{file}").to_f
+  @conv = TemperatureConverter.new File.read("#{file}").to_f
  end
 
  opts.on("-u URL", String, "Show url temperature.") do |url|
-  conv = TemperatureConverter.new Net::HTTP.get(URI.parse("#{url}")).to_f
+  @conv = TemperatureConverter.new Net::HTTP.get(URI.parse("#{url}")).to_f
  end
 
  opts.on("-m", "--mqtt", "Show mqtt temperature.") do
@@ -67,24 +67,26 @@ OptionParser.new do |opts|
      c.get(sensor_id) do |topic,message|
            obj = JSON.parse("#{message}")
            conv = obj['fields']['temperature'].to_f
-           puts conv
-          #  puts TemperaturePrinter.to_text(conv)
-           puts '.....................................................................'
-
+           @conv = TemperatureConverter.new conv
+          #  puts conv
+          # #  puts TemperaturePrinter.to_text(conv)
+          #  puts '.....................................................................'
+            break if message [0,1] != nil
      end
    end
+   @conv
  end
 
  opts.on("--text", "Show temperature as text.") do
-   puts TemperaturePrinter.to_text(conv)
+   puts TemperaturePrinter.to_text(@conv)
  end
 
  opts.on("--json", "Show temperature as json.") do
-   puts TemperaturePrinter.to_json(conv)
+   puts TemperaturePrinter.to_json(@conv)
  end
 
  opts.on("--html", "Show temperature as html.") do
-   puts TemperaturePrinter.to_html(conv)
+   puts TemperaturePrinter.to_html(@conv)
  end
 
 end.parse!
